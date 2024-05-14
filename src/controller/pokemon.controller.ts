@@ -11,6 +11,16 @@ class pokemonController {
       next(error);
     }
   }
+
+  async post(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { name, image, type } = req.body;
+      const { status, message } = await this.service.post(name, image, type);
+      res.status(status).json(message);
+    } catch (error) {
+      next(error);
+    }
+  }
 }
 
 export default pokemonController;
