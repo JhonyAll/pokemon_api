@@ -5,7 +5,8 @@ class pokemonController {
 
   async get(req: Request, res: Response, next: NextFunction) {
     try {
-      const { status, message } = await this.service.get();
+      const name = req.query.name?.toString();
+      const { status, message } = await this.service.get(name);
       res.status(status).json(message);
     } catch (error) {
       next(error);
